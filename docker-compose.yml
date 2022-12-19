@@ -1,8 +1,16 @@
+x-SManager:
+  properties:
+    - "Server port: ${SERVERPORT}"
+  ui_edit_vars:
+    Server port: SERVERPORT
+
+
 services:
   stationeers:
     image: hetsh/stationeers:latest
-    build: .
+    # build: .
     ports:
-      - 27016:27016/udp # Game Port (required)
+      - ${SERVERPORT}:27016/udp # Game Port (required)
     volumes:
       - /etc/localtime:/etc/localtime:ro # Correct time for logs and more
+      - ./:/stationeers
